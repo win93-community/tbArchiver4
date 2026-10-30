@@ -22,8 +22,10 @@ socket.on('message', async (data: MessageData) => {
     try {
         await writeToDisk(data, "message", config.format);
     } catch(err) {
-        console.error(`[tbarchiver4]: Error writing to disk: ${err}`);
+        console.error(`[tbarchiver4]: Error writing message event to disk: ${err}`);
+        return;
     }
+    console.log(`[tbarchiver4]: Wrote message event to disk`)
 })
 socket.on('user joined', async (data: UserJoinLeftData) => {
     try {
@@ -31,14 +33,15 @@ socket.on('user joined', async (data: UserJoinLeftData) => {
     } catch(err) {
         console.error(`[tbarchiver4]: Error writing user join event to disk: ${err}`)
     }
-
+    console.log(`[tbarchiver4]: Wrote user join event to disk`)
 })
 socket.on('user left', async (data: UserJoinLeftData) => {
     try {
         await writeToDisk(data, "user_left", config.format);
     } catch(err) {
         console.error(`[tbarchiver4]: Error writing user left event to disk: ${err}`)
-    }  
+    }
+    console.log(`[tbarchiver4]: Wrote user left event to disk`)  
 })
 socket.on('user change nick', async (raw: any) => {
     const data: NickChangeData = {
@@ -50,7 +53,7 @@ socket.on('user change nick', async (raw: any) => {
     } catch(err) {
         console.error(`[tbarchiver4]: Error writing nick change event to disk: ${err}`);
     }
-    
+    console.log(`[tbarchiver4]: Wrote nick change event to disk`)
 })
 socket.on('user change room', async (raw: any) => {
     const data: RoomChangeData = {
@@ -62,4 +65,5 @@ socket.on('user change room', async (raw: any) => {
     } catch(err) {
         console.error(`[tbarchiver4]: Error writing room change event to disk: ${err}`);
     }
+    console.log(`[tbarchiver4]: Wrote room change event to disk`)
 })
