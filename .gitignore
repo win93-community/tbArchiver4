@@ -1,3 +1,6 @@
+output/
+nocommit/
+
 # Logs
 logs
 *.log
