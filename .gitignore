@@ -1,6 +1,6 @@
 output/
 nocommit/
-
+config.json
 # Logs
 logs
 *.log

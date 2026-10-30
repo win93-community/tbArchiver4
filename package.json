@@ -1,0 +1,32 @@
+{
+  "name": "tbarchiver4",
+  "version": "1.0.0",
+  "description": "The hopefully (final) rewrite of tbArchiver, which is an archiver for Trollbox.",
+  "keywords": [
+    "trollbox",
+    "archiver"
+  ],
+  "homepage": "https://github.com/win93-community/tbArchiver4#readme",
+  "bugs": {
+    "url": "https://github.com/win93-community/tbArchiver4/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/win93-community/tbArchiver4.git"
+  },
+  "license": "Unlicense",
+  "author": "Juho \"UnresilientSwan\" L.",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "socket.io-client": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/socket.io-client": "^1.4.36",
+    "typescript": "^7.0.2"
+  }
+}
