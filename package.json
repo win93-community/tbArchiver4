@@ -1,6 +1,6 @@
 {
   "name": "tbarchiver4",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The hopefully (final) rewrite of tbArchiver, which is an archiver for Trollbox.",
   "keywords": [
     "trollbox",
