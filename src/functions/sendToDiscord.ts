@@ -63,7 +63,7 @@ export async function sendToDiscord(data: MessageData | UserJoinLeftData | RoomC
             console.log(`[tbarchiver4]: Sending room change event to Discord`);
             const roomChangeData = data as RoomChangeData;
 
-            var embed = new DiscordEmbed(`User changed room: ${roomChangeData.user.nick})}`, ``, 139);
+            var embed = new DiscordEmbed(`User changed room: ${decode(roomChangeData.user.nick)}`, ``, 139);
 
             var fields = [
                 {
@@ -93,7 +93,7 @@ export async function sendToDiscord(data: MessageData | UserJoinLeftData | RoomC
             var fields = [
                 {
                     "name": "New nick",
-                    "value": decode(nickChangeData.originalNick.nick)
+                    "value": decode(nickChangeData.newNick.nick)
                 },
                 {
                     "name": "Home",
