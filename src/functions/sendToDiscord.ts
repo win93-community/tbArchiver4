@@ -46,7 +46,7 @@ export async function sendToDiscord(data: MessageData | UserJoinLeftData | RoomC
             console.log(`[tbarchiver4]: Sending user left event to Discord`);
             const userLeftData = data as UserJoinLeftData;
 
-            var embed = new DiscordEmbed(`User joined: ${decode(userLeftData.nick)}`, ``, 139);
+            var embed = new DiscordEmbed(`User left: ${decode(userLeftData.nick)}`, ``, 139);
 
             var fields = [
                 {
