@@ -7,6 +7,7 @@ import type { BotConfig } from './src/interfaces/botConfig.ts';
 import type { MessageData, UserJoinLeftData, RoomChangeData, NickChangeData } from './src/interfaces/events.ts';
 
 import { writeToDisk } from './src/functions/writeToDisk.ts';
+import { sendToDiscord } from './src/functions/sendToDiscord.ts';
 
 const config = JSON.parse(await readFile('config.json', 'utf-8')) as BotConfig;
 const socket: SocketIOClient.Socket = io('http://windows93.net:8081');
@@ -26,6 +27,8 @@ socket.on('message', async (data: MessageData) => {
         return;
     }
     console.log(`[tbarchiver4]: Wrote message event to disk`);
+    
+    await sendToDiscord(data, "message", config.webhook);
 });
 socket.on('user joined', async (data: UserJoinLeftData) => {
     try {
@@ -34,6 +37,8 @@ socket.on('user joined', async (data: UserJoinLeftData) => {
         console.error(`[tbarchiver4]: Error writing user join event to disk: ${err}`);
     }
     console.log(`[tbarchiver4]: Wrote user join event to disk`);
+
+    await sendToDiscord(data, "user_join", config.webhook);
 });
 socket.on('user left', async (data: UserJoinLeftData) => {
     try {
@@ -41,7 +46,9 @@ socket.on('user left', async (data: UserJoinLeftData) => {
     } catch(err) {
         console.error(`[tbarchiver4]: Error writing user left event to disk: ${err}`);
     }
-    console.log(`[tbarchiver4]: Wrote user left event to disk`)  ;
+    console.log(`[tbarchiver4]: Wrote user left event to disk`);
+
+    await sendToDiscord(data, "user_left", config.webhook);
 });
 socket.on('user change nick', async (raw: any) => {
     const data: NickChangeData = {
@@ -54,6 +61,9 @@ socket.on('user change nick', async (raw: any) => {
         console.error(`[tbarchiver4]: Error writing nick change event to disk: ${err}`);
     }
     console.log(`[tbarchiver4]: Wrote nick change event to disk`);
+    console.log(data);
+
+    await sendToDiscord(data, "nick_change", config.webhook);
 });
 socket.on('user change room', async (raw: any) => {
     const data: RoomChangeData = {
@@ -66,4 +76,5 @@ socket.on('user change room', async (raw: any) => {
         console.error(`[tbarchiver4]: Error writing room change event to disk: ${err}`);
     }
     console.log(`[tbarchiver4]: Wrote room change event to disk`);
-})
+    await sendToDiscord(data, "room_change", config.webhook);
+});

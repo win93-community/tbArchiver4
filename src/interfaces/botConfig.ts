@@ -4,4 +4,5 @@ export interface BotConfig {
     color: string;
     format: string;
     infoMsg: string;
+    webhook: string;
 }
